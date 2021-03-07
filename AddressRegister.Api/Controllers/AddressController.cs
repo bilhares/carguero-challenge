@@ -43,5 +43,13 @@ namespace AddressRegister.Api.Controllers
 
             return Ok(address);
         }
+
+        [HttpGet]
+        [Route("GetByUsername")]
+        public async Task<ActionResult<List<Address>>> GetByUsername([FromQuery]string username)
+        {
+            var addresses = await _addressService.GetByUsername(username);
+            return Ok(addresses);
+        }
     }
 }

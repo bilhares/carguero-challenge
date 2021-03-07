@@ -18,15 +18,20 @@ namespace AddressRegister.Infra.Services
         private readonly IMapper _mapper;
 
         public AddressService(
-            IUserRepository userRepository, 
-            IAddressRepository addressRepository, 
-            IGoogleMapsApiService googleMapsApiService, 
+            IUserRepository userRepository,
+            IAddressRepository addressRepository,
+            IGoogleMapsApiService googleMapsApiService,
             IMapper mapper)
         {
             _userRepository = userRepository;
             _addressRepository = addressRepository;
             _mapper = mapper;
             _googleMapsApiService = googleMapsApiService;
+        }
+
+        public async Task<List<Address>> GetByUsername(string username)
+        {
+            return await _addressRepository.GetByUsername(username);
         }
 
         public async Task<bool> Register(AddressDto address)
@@ -40,7 +45,7 @@ namespace AddressRegister.Infra.Services
 
             address.User = user;
 
-            var  addressRegistered = await _addressRepository.Create(_mapper.Map<Address>(address));
+            var addressRegistered = await _addressRepository.Create(_mapper.Map<Address>(address));
             return addressRegistered != null;
         }
 
@@ -51,10 +56,8 @@ namespace AddressRegister.Infra.Services
 
         private async Task<bool> AddressFromBrazil(AddressDto address)
         {
-            var result =  await _googleMapsApiService.FindAddress(address);
+            var result = await _googleMapsApiService.FindAddress(address);
             return result.status == "OK";
         }
-
-
     }
 }
