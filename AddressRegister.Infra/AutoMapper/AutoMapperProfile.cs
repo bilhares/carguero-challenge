@@ -12,6 +12,7 @@ namespace AddressRegister.Infra.AutoMapper
         public AutoMapperProfile()
         {
             CreateMap<User, UserDto>().ReverseMap();
+            CreateMap<Address, AddressDto>().ReverseMap();
         }
     }
 }

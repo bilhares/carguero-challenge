@@ -35,6 +35,9 @@ namespace AddressRegister.Api
             services.AddDbContext<AddressRegisterDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("dataBase")));
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IAddressRepository, AddressRepository>();
+            services.AddScoped<IAddressService, AddressService>();
+            services.AddScoped<IGoogleMapsApiService, GoogleMapsApiService>();
             services.AddAutoMapper();
         }
 

@@ -12,7 +12,7 @@ namespace AddressRegister.Api.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private IUserService _userService;
+        private readonly IUserService _userService;
         public UserController(IUserService userService)
         {
             _userService = userService;
@@ -26,13 +26,13 @@ namespace AddressRegister.Api.Controllers
 
         [HttpPost]
         public async Task<ActionResult<User>> Post([FromBody]UserDto user)
-        {          
-            var registered =  await _userService.Register(user);
+        {
+            var registered = await _userService.Register(user);
 
             if (!registered)
                 return BadRequest();
 
-            return Created("GetByUsername", user);
+            return Ok(user);
         }
 
         [HttpGet]

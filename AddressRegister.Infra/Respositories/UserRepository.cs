@@ -33,5 +33,10 @@ namespace AddressRegister.Infra.Respositories
         {
             return _context.Users.Where(_ => _.Username == username).FirstOrDefault();
         }
+
+        public User findById(int id)
+        {
+            return _context.Users.Where(_ => _.Id == id).FirstOrDefault();
+        }
     }
 }
