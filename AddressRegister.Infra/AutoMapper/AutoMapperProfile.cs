@@ -9,9 +9,9 @@ namespace AddressRegister.Infra.AutoMapper
 {
     public class AutoMapperProfile : Profile
     {
-        protected void Configure()
+        public AutoMapperProfile()
         {
-            CreateMap<User, UserDto>();          
+            CreateMap<User, UserDto>().ReverseMap();
         }
     }
 }

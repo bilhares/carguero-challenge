@@ -1,11 +1,9 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using AddressRegister.Domain.Dtos;
 using AddressRegister.Domain.Entities;
 using AddressRegister.Infra.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AddressRegister.Api.Controllers
@@ -29,13 +27,20 @@ namespace AddressRegister.Api.Controllers
         [HttpPost]
         public async Task<ActionResult<User>> Post([FromBody]UserDto user)
         {          
-            await _userService.Register(user);
+            var registered =  await _userService.Register(user);
 
-            if (user == null)
+            if (!registered)
                 return BadRequest();
 
-            return Ok(user);
+            return Created("GetByUsername", user);
         }
 
+        [HttpGet]
+        [Route("GetByUsername")]
+        public async Task<ActionResult<List<User>>> GetByUsername([FromQuery]string username)
+        {
+            var user = _userService.GetByUsername(username);
+            return Ok(user);
+        }
     }
 }

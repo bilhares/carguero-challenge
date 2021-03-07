@@ -9,7 +9,8 @@ namespace AddressRegister.Infra.Interfaces
 {
     public interface IUserService
     {
-        Task<User> Register(UserDto user);
+        Task<bool> Register(UserDto user);
         Task<List<User>> ListUsers();
+        User GetByUsername(string username);
     }
 }

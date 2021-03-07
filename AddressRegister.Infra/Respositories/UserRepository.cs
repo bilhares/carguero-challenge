@@ -29,7 +29,7 @@ namespace AddressRegister.Infra.Respositories
             return await _context.Users.ToListAsync();
         }
 
-        public User GetByUsername(string username)
+        public User findByUsername(string username)
         {
             return _context.Users.Where(_ => _.Username == username).FirstOrDefault();
         }

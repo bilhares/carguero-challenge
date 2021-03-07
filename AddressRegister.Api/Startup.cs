@@ -15,6 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using AutoMapper;
+using AddressRegister.Infra.AutoMapper;
 
 namespace AddressRegister.Api
 {
@@ -31,10 +32,10 @@ namespace AddressRegister.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddAutoMapper(typeof(Startup));
             services.AddDbContext<AddressRegisterDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("dataBase")));
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
+            services.AddAutoMapper();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

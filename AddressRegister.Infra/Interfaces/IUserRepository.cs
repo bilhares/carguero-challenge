@@ -10,6 +10,6 @@ namespace AddressRegister.Infra.Interfaces
     {
         Task<User> Create(User user);
         Task<List<User>> GetAll();
-        User GetByUsername(string username);
+        User findByUsername(string username); 
     }
 }
