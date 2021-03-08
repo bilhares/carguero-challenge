@@ -39,7 +39,7 @@ namespace AddressRegister.Api.Controllers
         [Route("GetByUsername")]
         public async Task<ActionResult<List<User>>> GetByUsername([FromQuery]string username)
         {
-            var user = _userService.GetByUsername(username);
+            var user = await _userService.GetByUsername(username);
             return Ok(user);
         }
     }

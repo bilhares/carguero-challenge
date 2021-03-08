@@ -51,5 +51,17 @@ namespace AddressRegister.Api.Controllers
             var addresses = await _addressService.GetByUsername(username);
             return Ok(addresses);
         }
+
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete([FromQuery]string username, int id)
+        {
+            var deleted = await _addressService.Delete(username, id);
+
+            if (!deleted)
+                return BadRequest();
+
+            return Ok();
+        }
     }
 }

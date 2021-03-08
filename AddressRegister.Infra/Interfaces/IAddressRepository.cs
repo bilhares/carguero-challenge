@@ -11,6 +11,7 @@ namespace AddressRegister.Infra.Interfaces
         Task<Address> Create(Address address);
         Task<bool> Update(Address address, int id);
         Task<bool> Delete(int id);  
-        Task<List<Address>> GetByUsername(string username);
+        Task<List<Address>> FindByUsername(string username);
+        Task<Address> FindById(int id);
     }
 }

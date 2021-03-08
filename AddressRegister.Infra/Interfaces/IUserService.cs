@@ -11,6 +11,6 @@ namespace AddressRegister.Infra.Interfaces
     {
         Task<bool> Register(UserDto user);
         Task<List<User>> ListUsers();
-        User GetByUsername(string username);
+        Task<User> GetByUsername(string username);
     }
 }

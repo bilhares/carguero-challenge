@@ -12,5 +12,6 @@ namespace AddressRegister.Infra.Interfaces
         Task<bool> Register(AddressDto address);
         Task<bool> Update(AddressDto address, int id);
         Task<List<Address>> GetByUsername(string username);
+        Task<bool> Delete(string username, int id);
     }
 }

@@ -9,9 +9,8 @@ namespace AddressRegister.Infra.Interfaces
     public interface IUserRepository
     {
         Task<User> Create(User user);
-        Task<List<User>> GetAll();
-        User findByUsername(string username);
-
-        User findById(int id);
+        Task<List<User>> FindAll();
+        Task<User> FindByUsername(string username);
+        Task<User> FindById(int id);
     }
 }

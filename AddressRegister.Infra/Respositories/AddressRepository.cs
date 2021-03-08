@@ -26,7 +26,7 @@ namespace AddressRegister.Infra.Respositories
 
         public async Task<bool> Update(Address address, int id)
         {
-            var addressRegistered = GetById(id);
+            var addressRegistered = await FindById(id);
 
             addressRegistered.UpdateComplement(address.Complement);
             addressRegistered.UpdateNumber(address.Number);
@@ -37,20 +37,21 @@ namespace AddressRegister.Infra.Respositories
 
         public async Task<bool> Delete(int id)
         {
-            var addressRegistered = GetById(id);
+            var addressRegistered = await FindById(id);
             _context.Remove(addressRegistered);
 
             return (await _context.SaveChangesAsync()) > 0;
         }
 
-        public Task<List<Address>> GetByUsername(string username)
+        public Task<List<Address>> FindByUsername(string username)
         {
             return _context.Addresses.Where(x => x.User.Username == username)
                 .Include(_ => _.User).ToListAsync();
         }
-        private Address GetById(int id)
+        public async Task<Address> FindById(int id)
         {
-            return _context.Addresses.Where(x => x.Id == id).FirstOrDefault();
-        }
+            return await _context.Addresses.Where(x => x.Id == id)
+                .Include(_ => _.User).FirstOrDefaultAsync();
+        } 
     }
 }

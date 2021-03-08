@@ -29,14 +29,26 @@ namespace AddressRegister.Infra.Services
             _googleMapsApiService = googleMapsApiService;
         }
 
+        public async Task<bool> Delete(string username, int id)
+        {
+            var address = await _addressRepository.FindById(id);
+            if (address == null)
+                return false;
+
+            if (address.User.Username != username)
+                return false;
+
+            return await _addressRepository.Delete(id);
+        }
+
         public async Task<List<Address>> GetByUsername(string username)
         {
-            return await _addressRepository.GetByUsername(username);
+            return await _addressRepository.FindByUsername(username);
         }
 
         public async Task<bool> Register(AddressDto address)
         {
-            var user = _userRepository.findById(address.UserId);
+            var user = await _userRepository.FindById(address.UserId);
             if (user == null)
                 return false;
 

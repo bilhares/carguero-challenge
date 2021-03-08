@@ -19,28 +19,28 @@ namespace AddressRegister.Infra.Services
             _mapper = mapper;
         }
 
-        public User GetByUsername(string username)
+        public async Task<User> GetByUsername(string username)
         {
-            return _userRepository.findByUsername(username);
+            return await _userRepository.FindByUsername(username);
         }
 
         public Task<List<User>> ListUsers()
         {
-            return _userRepository.GetAll();
+            return _userRepository.FindAll();
         }
 
         public async Task<bool> Register(UserDto user)
         {
-            if (UserAlreadyRegistered(user.Username))
+            if (await UserAlreadyRegistered(user.Username))
                 return false;
 
             var userRegistered = await _userRepository.Create(_mapper.Map<User>(user));
             return userRegistered != null;
         }
 
-        private bool UserAlreadyRegistered(string username)
+        private async Task<bool> UserAlreadyRegistered(string username)
         {
-            var user = _userRepository.findByUsername(username);
+            var user = await _userRepository.FindByUsername(username);
             return user != null;
         }
     }

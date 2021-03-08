@@ -24,19 +24,19 @@ namespace AddressRegister.Infra.Respositories
             return user;
         }
 
-        public async Task<List<User>> GetAll()
+        public async Task<List<User>> FindAll()
         {
             return await _context.Users.ToListAsync();
         }
 
-        public User findByUsername(string username)
+        public async Task<User> FindByUsername(string username)
         {
-            return _context.Users.Where(_ => _.Username == username).FirstOrDefault();
+            return await _context.Users.Where(_ => _.Username == username).FirstOrDefaultAsync();
         }
 
-        public User findById(int id)
+        public async Task<User> FindById(int id)
         {
-            return _context.Users.Where(_ => _.Id == id).FirstOrDefault();
+            return await _context.Users.Where(_ => _.Id == id).FirstOrDefaultAsync();
         }
     }
 }
