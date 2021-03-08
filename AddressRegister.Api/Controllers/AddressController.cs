@@ -36,9 +36,9 @@ namespace AddressRegister.Api.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult<Address>> Put([FromBody]AddressDto address, int id)
         {
-            var registered = await _addressService.Update(address, id);
+            var updated = await _addressService.Update(address, id);
 
-            if (!registered)
+            if (!updated)
                 return BadRequest();
 
             return Ok(address);
