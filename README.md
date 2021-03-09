@@ -3,6 +3,10 @@
 ## Api developed for a Challenge
 
 ## How to run
+- Install EF Core CLI for .Net Core
+```
+ dotnet tool install --global dotnet-ef --version 3.0.0
+```
 - Create a Database With name 'carguero'
 - Open folder '\carguero-challenge\AddressRegister.Infra' and start cmd
 - Run the command:
