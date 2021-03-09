@@ -13,3 +13,16 @@ dotnet ef database update --startup-project ..\AddressRegister.Api
 ```bash
 dotnet run --project ..\AddressRegister.Api
  ```
+
+## Endpoints
+
+### Register user
+-POST
+- Url
+http://localhost:5000/api/user
+-Data
+```
+{
+    "username": "string"
+}
+```
