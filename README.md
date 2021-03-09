@@ -17,10 +17,10 @@ dotnet run --project ..\AddressRegister.Api
 ## Endpoints
 
 ### Register user
--POST
+- POST
 - Url
 http://localhost:5000/api/user
--Data
+- Data
 ```
 {
     "username": "string"
