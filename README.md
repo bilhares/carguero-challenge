@@ -27,16 +27,66 @@ http://localhost:5000/api/user
 - Data
 ```
 {
-    "username": "string"
+    "username": string
 }
 ```
 ### Get User by username
 - GET
-- Url localhost:5000/api/user/GetByUsername?username=string
-- Data
+- Url http://localhost:5000/api/user/GetByUsername?username=string
+- Response data
 ```
 {
-    "username": "string",
+    "username": string,
     "id": number
 }
 ```
+### Register Address
+- POST
+- Url
+http://localhost:5000/api/address
+- Data
+```
+{
+  "zipCode": string,
+  "number": number,
+  "city": string,
+  "district": string,
+  "state": string,
+  "userId": number,
+  "complement": string
+}
+```
+### Get Address by username
+- GET
+- Url http://localhost:5000/api/address/GetByUsername?username=string
+- Response data
+```
+[
+    {
+        "zipCode": string,
+        "number": number,
+        "city": string,
+        "district": string,
+        "state": string,
+        "userId": number,
+        "complement": string,
+        "user": {
+                    "username": string,
+                    "id": number
+                }
+    }
+]
+```
+### Update Address
+- PUT
+- Url http://localhost:5000/api/address/{AddressId}
+- Data
+```
+{
+  "number": number,
+  "complement": string
+}
+```
+### Delete Address
+- DELETE
+- Url http://localhost:5000/api/address/{AddressId}?username=string
