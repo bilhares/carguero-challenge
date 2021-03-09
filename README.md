@@ -26,3 +26,13 @@ http://localhost:5000/api/user
     "username": "string"
 }
 ```
+### Get User by username
+- GET
+- Url localhost:5000/api/user/GetByUsername?username=string
+- Data
+```
+{
+    "username": "string",
+    "id": number
+}
+```
