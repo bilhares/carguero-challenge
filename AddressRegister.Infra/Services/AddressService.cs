@@ -29,18 +29,6 @@ namespace AddressRegister.Infra.Services
             _googleMapsApiService = googleMapsApiService;
         }
 
-        public async Task<bool> Delete(string username, int id)
-        {
-            var address = await _addressRepository.FindById(id);
-            if (address == null)
-                return false;
-
-            if (address.User.Username != username)
-                return false;
-
-            return await _addressRepository.Delete(id);
-        }
-
         public async Task<List<Address>> GetByUsername(string username)
         {
             return await _addressRepository.FindByUsername(username);
@@ -70,6 +58,18 @@ namespace AddressRegister.Infra.Services
         {
             var result = await _googleMapsApiService.FindAddress(address);
             return result.status == "OK";
+        }
+
+        public async Task<bool> Delete(string username, int id)
+        {
+            var address = await _addressRepository.FindById(id);
+            if (address == null)
+                return false;
+
+            if (address.User.Username != username)
+                return false;
+
+            return await _addressRepository.Delete(id);
         }
     }
 }

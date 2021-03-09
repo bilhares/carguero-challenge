@@ -38,5 +38,10 @@ namespace AddressRegister.Domain.Entities
             Complement = complement;
         }
 
+        public void SetUser(User user)
+        {
+            User = user;
+        }
+
     }
 }
