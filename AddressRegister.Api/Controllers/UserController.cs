@@ -12,6 +12,7 @@ namespace AddressRegister.Api.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
+        //test
         private readonly IUserService _userService;
         public UserController(IUserService userService)
         {
